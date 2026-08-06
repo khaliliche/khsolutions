@@ -1,7 +1,9 @@
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
+import WhyUs from "@/components/sections/WhyUs";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
+import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
 import Technologies from "@/components/sections/Technologies";
 import Pricing from "@/components/sections/Pricing";
@@ -15,8 +17,10 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <WhyUs />
         <Services />
         <Portfolio />
+        <Testimonials />
         <Process />
         <Technologies />
         <Pricing />

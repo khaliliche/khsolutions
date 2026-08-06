@@ -23,7 +23,7 @@ export const portfolio = [
     en: { title: "AC Store", desc: "E-commerce platform for an air conditioner retailer.", results: "Streamlined online ordering for a growing catalog." },
     fr: { title: "AC Store", desc: "Plateforme e-commerce pour un revendeur de climatiseurs.", results: "Commande en ligne simplifiée pour un catalogue en croissance." },
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "",
+    liveUrl: "https://airwoodclim-production.up.railway.app",
     githubUrl: "https://github.com/khaliliche/airwoodclim",
   },
   {
