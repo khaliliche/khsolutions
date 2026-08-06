@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "KHSolutions — Smart software for everyday business.",
   description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
   verification: {
-    google: "google-site-verification: google9b488c75002c89b2.html",
+    google: "VEl7Oamv0fgnHHnrDhL2b7XvtOJM5iBIr3rp0hZ7-DU",
   },
 };
 
