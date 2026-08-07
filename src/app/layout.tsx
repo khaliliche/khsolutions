@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/context";
 import Loader from "@/components/ui/Loader";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Loader />
           {children}
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
