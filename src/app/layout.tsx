@@ -19,6 +19,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "KHSolutions — Smart software for everyday business.",
   description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
+  metadataBase: new URL("https://www.khsolutions.it.com"),
+  alternates: {
+    canonical: "/",
+  },
   verification: {
     google: "VEl7Oamv0fgnHHnrDhL2b7XvtOJM5iBIr3rp0hZ7-DU",
   },
