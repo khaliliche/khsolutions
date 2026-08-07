@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Loader() {
   const [loading, setLoading] = useState(true);
@@ -11,30 +10,28 @@ export default function Loader() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (!loading) return null;
+
   return (
-    <AnimatePresence>
-      {loading && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
-        >
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }} className="flex flex-col items-center gap-4">
-            <span className="font-display text-2xl font-semibold tracking-tight">
-              KH<span className="text-primary">Solutions</span>
-            </span>
-            <div className="h-[2px] w-40 bg-border overflow-hidden rounded-full">
-              <motion.div
-                className="h-full bg-gradient-primary"
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
-                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#08090B",
+        animation: "khsFadeOut 0.5s ease-in-out 1.2s forwards",
+        pointerEvents: "none",
+      }}
+    >
+      <style>{`@keyframes khsFadeOut { to { opacity: 0; visibility: hidden; } }`}</style>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+        <span style={{ fontFamily: "sans-serif", fontSize: "24px", fontWeight: 600, color: "#F5F5F7" }}>
+          KH<span style={{ color: "#E5283F" }}>Solutions</span>
+        </span>
+      </div>
+    </div>
   );
 }
