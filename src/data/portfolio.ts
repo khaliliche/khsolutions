@@ -5,7 +5,7 @@ export const portfolio = [
     en: { title: "Zarbia", desc: "E-commerce platform for a Moroccan handmade rug and djellaba workshop.", results: "Custom order system, admin panel, and full checkout flow built from scratch." },
     fr: { title: "Zarbia", desc: "Plateforme e-commerce pour un atelier marocain de tapis et djellabas artisanaux.", results: "Système de commande sur mesure, panneau admin et flux de commande complet." },
     tech: ["Next.js", "TypeScript", "Supabase"],
-    liveUrl: "",
+    liveUrl: "https://zarbiaa.vercel.app/",
     githubUrl: "https://github.com/khaliliche/zarbia",
   },
   {
