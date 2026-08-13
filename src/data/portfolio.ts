@@ -51,7 +51,7 @@ export const portfolio = [
     fr: { title: "Perla Luxury Events", desc: "Site de présentation et de réservation pour un service de décoration événementielle et buffets de luxe.", results: "Parcours de réservation en ligne et galerie pour convertir les visiteurs Instagram en clients." },
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://perla-luxury-events.vercel.app",
-    githubUrl: "",
+    githubUrl: "https://github.com/khaliliche/perla-luxury-events",
   },
   {
     slug: "flamex",
@@ -60,7 +60,7 @@ export const portfolio = [
     fr: { title: "FlameX", desc: "Site e-commerce pour une marque de briquets torch premium, avec commande panier vers WhatsApp.", results: "Vitrine produit percutante avec panneau admin pour la gestion complète des produits." },
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://flamex-site.vercel.app",
-    githubUrl: "",
+    githubUrl: "https://github.com/khaliliche/flamex-site",
   },
   {
     slug: "jeyna-headspa",
@@ -69,6 +69,6 @@ export const portfolio = [
     fr: { title: "Jeyna Head Spa", desc: "Site de réservation pour un spa capillaire, avec chatbot intégré pour les tarifs.", results: "Parcours de réservation via WhatsApp et réponses instantanées sur les soins et prix." },
     tech: ["HTML", "Tailwind CSS", "JavaScript"],
     liveUrl: "https://jeyna-headspa.vercel.app",
-    githubUrl: "",
+    githubUrl: "https://github.com/khaliliche/jeyna-headspa",
   },
 ];
