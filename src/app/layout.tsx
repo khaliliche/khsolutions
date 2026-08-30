@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               sameAs: [
                 "https://github.com/khaliliche",
                 "https://www.linkedin.com/in/khalil-iche-32688a358/",
-                "https://www.instagram.com/k4alil5/",
+                "https://www.instagram.com/k4alil5/", "https://share.google/ugquPYInD9yhvVG91",
               ],
             }),
           }}

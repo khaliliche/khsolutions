@@ -26,7 +26,7 @@ export default function PortfolioPage() {
             {portfolio.map((project) => (
               <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group rounded-2xl border border-border bg-surface overflow-hidden hover:border-border-hover transition-colors">
                 <div className="relative h-44 bg-background overflow-hidden">
-                  <Image src={project.image} alt={project.en.title} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={project.image} alt={project.en.title + " case study screenshot - KHSolutions"} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h2 className="font-display text-lg font-medium mb-2">{project.en.title}</h2>

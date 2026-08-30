@@ -22,7 +22,7 @@ function ProjectImage({ src, title }: { src: string; title: string }) {
 
   return (
     <div className="relative h-44 bg-background overflow-hidden">
-      <Image src={src} alt={title} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" onError={() => setError(true)} />
+      <Image src={src} alt={title + " - website built by KHSolutions"} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" onError={() => setError(true)} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
     </div>
   );
