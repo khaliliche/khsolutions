@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/context";
 import { services } from "@/data/services";
@@ -12,10 +13,10 @@ export default function Services() {
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <span className="text-xs font-mono uppercase tracking-widest text-primary-light">
-            {lang === "en" ? "What We Build" : "Ce Que Nous Créons"}
+            {lang === "en" ? "What We Build" : "Ce Que Nous Creons"}
           </span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl font-semibold tracking-tight">
-            {lang === "en" ? "Services engineered for growth" : "Des services pensés pour la croissance"}
+            {lang === "en" ? "Services engineered for growth" : "Des services penses pour la croissance"}
           </h2>
         </div>
 
@@ -42,6 +43,12 @@ export default function Services() {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link href="/services" className="text-sm text-primary-light hover:underline font-mono">
+            {lang === "en" ? "View all services ->" : "Voir tous les services ->"}
+          </Link>
         </div>
       </div>
     </section>

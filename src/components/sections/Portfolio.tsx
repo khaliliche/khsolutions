@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
@@ -34,8 +35,8 @@ export default function Portfolio() {
     <section id="portfolio" className="relative py-28 px-6">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-primary-light">{lang === "en" ? "Case Studies" : "Études de Cas"}</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl font-semibold tracking-tight">{lang === "en" ? "Work that speaks for itself" : "Des projets qui parlent d'eux-mêmes"}</h2>
+          <span className="text-xs font-mono uppercase tracking-widest text-primary-light">{lang === "en" ? "Case Studies" : "Etudes de Cas"}</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl font-semibold tracking-tight">{lang === "en" ? "Work that speaks for itself" : "Des projets qui parlent d'eux-memes"}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -59,11 +60,11 @@ export default function Portfolio() {
                   <div className="flex items-center gap-3">
                     {project.liveUrl ? (
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-foreground hover:text-primary-light transition-colors">
-                        <ExternalLink size={14} /> {lang === "en" ? "Live Demo" : "Démo"}
+                        <ExternalLink size={14} /> {lang === "en" ? "Live Demo" : "Demo"}
                       </a>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 text-sm text-muted/60 cursor-not-allowed">
-                        <ExternalLink size={14} /> {lang === "en" ? "Live Demo" : "Démo"}
+                        <ExternalLink size={14} /> {lang === "en" ? "Live Demo" : "Demo"}
                       </span>
                     )}
                     {project.githubUrl ? (
@@ -80,6 +81,12 @@ export default function Portfolio() {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link href="/portfolio" className="text-sm text-primary-light hover:underline font-mono">
+            {lang === "en" ? "View all work ->" : "Voir tous les projets ->"}
+          </Link>
         </div>
       </div>
     </section>
