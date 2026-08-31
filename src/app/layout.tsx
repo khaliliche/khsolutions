@@ -21,8 +21,21 @@ export const metadata: Metadata = {
   title: "KHSolutions — Smart software for everyday business.",
   description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
   metadataBase: new URL("https://www.khsolutions.it.com"),
+  applicationName: "KHSolutions",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "KHSolutions",
+    title: "KHSolutions — Smart software for everyday business.",
+    description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
+    url: "https://www.khsolutions.it.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KHSolutions — Smart software for everyday business.",
+    description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
   },
   verification: {
     google: "VEl7Oamv0fgnHHnrDhL2b7XvtOJM5iBIr3rp0hZ7-DU",
@@ -51,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               sameAs: [
                 "https://github.com/khaliliche",
                 "https://www.linkedin.com/in/khalil-iche-32688a358/",
-                "https://www.instagram.com/k4alil5/", "https://share.google/ugquPYInD9yhvVG91",
+                "https://www.instagram.com/k4alil5/",
               ],
             }),
           }}
