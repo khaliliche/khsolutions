@@ -1,15 +1,29 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { useLanguage } from "@/i18n/context";
 import StatCounter from "@/components/ui/StatCounter";
 
 export default function Hero() {
   const { t, lang } = useLanguage();
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(229,40,63,0.16), transparent 70%)`;
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
+    <section
+      id="home"
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16"
+    >
+      <motion.div className="absolute inset-0 pointer-events-none hidden md:block" style={{ background: spotlight }} />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(229,40,63,0.12),transparent)] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
 

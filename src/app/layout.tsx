@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/context";
 import Loader from "@/components/ui/Loader";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-background text-foreground">
        <LanguageProvider>
           <Loader />
+          <ScrollProgress />
           {children}
         </LanguageProvider>
         <script
