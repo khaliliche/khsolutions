@@ -67,7 +67,7 @@ const jsonLd = {
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
+      url: `${SITE_URL}/`,
       name: SITE_NAME,
       alternateName: [SITE_ALT_NAME],
       inLanguage: ["en", "fr"],
