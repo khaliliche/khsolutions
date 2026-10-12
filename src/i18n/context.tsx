@@ -26,10 +26,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+export function LanguageProvider({ children, initialLang }: { children: ReactNode; initialLang?: Lang }) {
+  const [lang, setLangState] = useState<Lang>(initialLang ?? "en");
 
   useEffect(() => {
+    if (initialLang) return;
     const saved = localStorage.getItem("khs-lang") as Lang | null;
     if (saved === "en" || saved === "fr") setLangState(saved);
   }, []);

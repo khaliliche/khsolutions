@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -6,10 +6,17 @@ import { services } from "@/data/services";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Services | KHSolutions - Web Development, AI & Automation in Morocco",
+  title: "Services: Web Development, AI & Automation in Morocco",
   description:
     "Websites, business automation, AI chatbots, CRMs, dashboards and e-commerce built for Moroccan businesses. See all KHSolutions services.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    type: "website",
+    url: "/services",
+    title: "Services: Web Development, AI & Automation in Morocco | KH Solutions",
+    description:
+      "Websites, business automation, AI chatbots, CRMs, dashboards and e-commerce built for Moroccan businesses.",
+  },
 };
 
 export default function ServicesPage() {

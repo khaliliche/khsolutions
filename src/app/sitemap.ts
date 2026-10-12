@@ -1,28 +1,25 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
 import { portfolio } from "@/data/portfolio";
+import { SITE_URL, CONTENT_LAST_UPDATED } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.khsolutions.it.com";
+  const lastModified = new Date(CONTENT_LAST_UPDATED);
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: `${base}/services`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/portfolio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: SITE_URL, lastModified },
+    { url: `${SITE_URL}/services`, lastModified },
+    { url: `${SITE_URL}/portfolio`, lastModified },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${base}/services/${s.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
+    url: `${SITE_URL}/services/${s.slug}`,
+    lastModified,
   }));
 
   const portfolioRoutes: MetadataRoute.Sitemap = portfolio.map((p) => ({
-    url: `${base}/portfolio/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
+    url: `${SITE_URL}/portfolio/${p.slug}`,
+    lastModified,
   }));
 
   return [...staticRoutes, ...serviceRoutes, ...portfolioRoutes];

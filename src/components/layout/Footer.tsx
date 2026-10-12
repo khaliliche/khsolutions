@@ -1,6 +1,7 @@
 
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/i18n/context";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/BrandIcons";
 import { MessageCircle } from "lucide-react";
@@ -9,11 +10,11 @@ export default function Footer() {
   const { t, lang } = useLanguage();
 
   const links = [
-    { href: "#home", label: t.nav.home },
-    { href: "#services", label: t.nav.services },
-    { href: "#portfolio", label: t.nav.portfolio },
-    { href: "#pricing", label: t.nav.pricing },
-    { href: "#contact", label: t.nav.contact },
+    { href: "/#home", label: t.nav.home },
+    { href: "/#services", label: t.nav.services },
+    { href: "/#portfolio", label: t.nav.portfolio },
+    { href: "/#pricing", label: t.nav.pricing },
+    { href: "/#contact", label: t.nav.contact },
   ];
 
   const socials = [
@@ -27,9 +28,9 @@ export default function Footer() {
     <footer className="relative border-t border-border px-6 py-14">
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <a href="#home" className="font-display font-semibold text-lg tracking-tight">
+          <Link href="/" className="font-display font-semibold text-lg tracking-tight">
             KH<span className="text-primary">Solutions</span>
-          </a>
+          </Link>
           <p className="mt-2 text-sm text-muted max-w-xs">{lang === "en" ? "Smart software for everyday business." : "Des logiciels intelligents pour votre entreprise."}</p>
         </div>
 

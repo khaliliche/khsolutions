@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/context";
 import Loader from "@/components/ui/Loader";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE_URL, SITE_NAME, SITE_ALT_NAME, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -18,28 +20,60 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "KHSolutions — Smart software for everyday business.",
-  description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
-  metadataBase: new URL("https://www.khsolutions.it.com"),
-  applicationName: "KHSolutions",
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s | ${SITE_ALT_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   openGraph: {
     type: "website",
-    siteName: "KHSolutions",
-    title: "KHSolutions — Smart software for everyday business.",
-    description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
-    url: "https://www.khsolutions.it.com",
+    siteName: SITE_NAME,
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "KHSolutions — Smart software for everyday business.",
-    description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
   },
   verification: {
     google: "VEl7Oamv0fgnHHnrDhL2b7XvtOJM5iBIr3rp0hZ7-DU",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#08090B",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      alternateName: [SITE_ALT_NAME],
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      telephone: "+212713805656",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Rabat",
+        addressCountry: "MA",
+      },
+      areaServed: { "@type": "Country", name: "Morocco" },
+      sameAs: [
+        "https://github.com/khaliliche",
+        "https://www.linkedin.com/in/khalil-iche-32688a358/",
+        "https://www.instagram.com/k4alil5/",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      alternateName: [SITE_ALT_NAME],
+      inLanguage: ["en", "fr"],
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -48,25 +82,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-background text-foreground">
        <LanguageProvider>
           <Loader />
+          <ScrollProgress />
           {children}
         </LanguageProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "KHSolutions",
-              description: "Premium software agency building websites, business automation, AI chatbots, dashboards, CRMs and more.",
-              url: "https://www.khsolutions.it.com",
-              telephone: "+212713805656",
-              areaServed: "Morocco",
-              sameAs: [
-                "https://github.com/khaliliche",
-                "https://www.linkedin.com/in/khalil-iche-32688a358/",
-                "https://www.instagram.com/k4alil5/",
-              ],
-            }),
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
         <Analytics />

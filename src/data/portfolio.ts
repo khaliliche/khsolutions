@@ -1,6 +1,7 @@
-export const portfolio = [
+﻿export const portfolio = [
   {
     slug: "zarbia",
+    category: "ecommerce",
     image: "/portfolio/zarbia.jpg",
     en: { title: "Zarbia", desc: "E-commerce platform for a Moroccan handmade rug and djellaba workshop.", results: "Custom order system, admin panel, and full checkout flow built from scratch.", long: "Zarbia needed a way to sell handmade rugs and djellabas online without relying only on Instagram DMs. We built a full e-commerce platform with a custom order system, an admin panel to manage products and orders, and a complete checkout flow - giving the workshop a real online storefront that works around the clock." },
     fr: { title: "Zarbia", desc: "Plateforme e-commerce pour un atelier marocain de tapis et djellabas artisanaux.", results: "Systeme de commande sur mesure, panneau admin et flux de commande complet." },
@@ -10,6 +11,7 @@ export const portfolio = [
   },
   {
     slug: "helpdesk-manager",
+    category: "management",
     image: "/portfolio/helpdesk-manager.jpg",
     en: { title: "HelpDesk Manager", desc: "Ticket management system for IT support teams, built in Java.", results: "Centralized ticket tracking, reducing average resolution time.", long: "An internal IT support team needed a centralized way to track and resolve tickets instead of managing requests over email and chat. We built a ticket management system in Java with Spring Boot, giving the team one place to log, assign, and resolve issues - cutting down average resolution time." },
     fr: { title: "HelpDesk Manager", desc: "Systeme de gestion de tickets pour equipes support IT, developpe en Java.", results: "Suivi centralise des tickets, temps de resolution reduit." },
@@ -19,6 +21,7 @@ export const portfolio = [
   },
   {
     slug: "ac-store",
+    category: "ecommerce",
     image: "/portfolio/ac-store.jpg",
     en: { title: "AC Store", desc: "E-commerce platform for an air conditioner retailer.", results: "Streamlined online ordering for a growing catalog.", long: "An air conditioner retailer needed to move a growing product catalog online and simplify how customers placed orders. We built a full e-commerce platform with Next.js and Tailwind CSS, giving the business a fast, mobile-friendly store that scales with new products." },
     fr: { title: "AC Store", desc: "Plateforme e-commerce pour un revendeur de climatiseurs.", results: "Commande en ligne simplifiee pour un catalogue en croissance." },
@@ -28,6 +31,7 @@ export const portfolio = [
   },
   {
     slug: "itmanager",
+    category: "management",
     image: "/portfolio/itmanager.jpg",
     en: { title: "ITManager", desc: "Internal IT asset and incident management system.", results: "Centralized tracking, reducing incident response time.", long: "Built during an internship, ITManager gives an organization a centralized system to track IT assets and incidents. Built with Python and Django, it replaced scattered spreadsheets with one dashboard for logging and resolving incidents faster." },
     fr: { title: "ITManager", desc: "Systeme de gestion des actifs et incidents IT.", results: "Suivi centralise, temps de reponse reduit." },
@@ -37,6 +41,7 @@ export const portfolio = [
   },
   {
     slug: "formatech",
+    category: "management",
     image: "/portfolio/formatech.jpg",
     en: { title: "Formatech", desc: "Training and formation management platform.", results: "Simplified enrollment and progress tracking.", long: "Formatech needed a way to manage course enrollment and track student progress in one place. We built a platform with Next.js, TypeScript, and PostgreSQL that simplified enrollment and gave staff a clear view of each student's progress." },
     fr: { title: "Formatech", desc: "Plateforme de gestion de formations.", results: "Inscription et suivi simplifies." },
@@ -46,6 +51,7 @@ export const portfolio = [
   },
   {
     slug: "perla-luxury-events",
+    category: "booking",
     image: "/portfolio/perla.jpg",
     en: { title: "Perla Luxury Events", desc: "Booking and showcase site for a luxury event decoration and buffet business.", results: "Online booking flow and gallery to convert Instagram visitors into clients.", long: "Perla Luxury Events, based in Temara, needed a website to convert Instagram followers into booked clients. We built a showcase site with a gallery and an online booking flow, giving the business a proper storefront beyond social media." },
     fr: { title: "Perla Luxury Events", desc: "Site de presentation et de reservation pour un service de decoration evenementielle et buffets de luxe.", results: "Parcours de reservation en ligne et galerie pour convertir les visiteurs Instagram en clients." },
@@ -55,6 +61,7 @@ export const portfolio = [
   },
   {
     slug: "flamex",
+    category: "ecommerce",
     image: "/portfolio/flamex.jpg",
     en: { title: "FlameX", desc: "E-commerce site for a premium torch lighter brand, with cart-to-WhatsApp ordering.", results: "Bold product showcase with an admin panel for full product management.", long: "FlameX, a Morocco-based torch lighter brand, needed an online store that matched its bold product design. We built an e-commerce site with cart-to-WhatsApp ordering and a full admin panel, letting the brand manage products without touching code." },
     fr: { title: "FlameX", desc: "Site e-commerce pour une marque de briquets torch premium, avec commande panier vers WhatsApp.", results: "Vitrine produit percutante avec panneau admin pour la gestion complete des produits." },
@@ -64,6 +71,7 @@ export const portfolio = [
   },
   {
     slug: "jeyna-headspa",
+    category: "booking",
     image: "/portfolio/jeyna-headspa.jpg",
     en: { title: "Jeyna Head Spa", desc: "Booking site for a hair and scalp spa, with an integrated pricing chatbot.", results: "WhatsApp-based reservation flow and instant answers on treatments and prices.", long: "Jeyna Head Spa in Kenitra needed an easy way for clients to book appointments and get quick answers on treatments and pricing. We built a booking site with a WhatsApp-based reservation flow and an integrated chatbot that answers pricing questions instantly." },
     fr: { title: "Jeyna Head Spa", desc: "Site de reservation pour un spa capillaire, avec chatbot integre pour les tarifs.", results: "Parcours de reservation via WhatsApp et reponses instantanees sur les soins et prix." },
