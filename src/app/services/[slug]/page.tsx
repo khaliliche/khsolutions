@@ -17,9 +17,15 @@ export async function generateMetadata({
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
   return {
-    title: `${service.en.title} | KHSolutions - Morocco`,
+    title: `${service.en.title} in Morocco`,
     description: service.en.long.slice(0, 155),
     alternates: { canonical: `/services/${service.slug}` },
+    openGraph: {
+      type: "website",
+      url: `/services/${service.slug}`,
+      title: `${service.en.title} in Morocco | KH Solutions`,
+      description: service.en.long.slice(0, 155),
+    },
   };
 }
 

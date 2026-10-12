@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useLanguage } from "@/i18n/context";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -17,22 +18,22 @@ export default function Header() {
   }, []);
 
   const links = [
-    { href: "#home", label: t.nav.home },
-    { href: "#services", label: t.nav.services },
-    { href: "#portfolio", label: t.nav.portfolio },
-    { href: "#process", label: t.nav.process },
-    { href: "#technologies", label: t.nav.technologies },
-    { href: "#pricing", label: t.nav.pricing },
-    { href: "#faq", label: t.nav.faq },
-    { href: "#contact", label: t.nav.contact },
+    { href: "/#home", label: t.nav.home },
+    { href: "/#services", label: t.nav.services },
+    { href: "/#portfolio", label: t.nav.portfolio },
+    { href: "/#process", label: t.nav.process },
+    { href: "/#technologies", label: t.nav.technologies },
+    { href: "/#pricing", label: t.nav.pricing },
+    { href: "/#faq", label: t.nav.faq },
+    { href: "/#contact", label: t.nav.contact },
   ];
 
   return (
     <header className={"fixed top-0 inset-x-0 z-50 transition-all duration-300 " + (scrolled ? "glass shadow-[0_1px_0_0_var(--border)]" : "bg-transparent")}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="#home" className="font-display font-semibold text-lg tracking-tight">
+        <Link href="/" className="font-display font-semibold text-lg tracking-tight">
           KH<span className="text-primary">Solutions</span>
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-7 font-mono text-[13px] text-muted">
           {links.map((l) => (
