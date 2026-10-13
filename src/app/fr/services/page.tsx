@@ -4,6 +4,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
 import { ArrowRight } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+import { servicesIndexGraph } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Services : développement web, IA et automatisation au Maroc",
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
 export default function ServicesPageFr() {
   return (
     <>
+      <JsonLd data={servicesIndexGraph("fr")} />
       <Header />
       <main className="pt-32 pb-24 px-6">
         <div className="mx-auto max-w-6xl">

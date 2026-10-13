@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
+import JsonLd from "@/components/seo/JsonLd";
+import { serviceGraph } from "@/lib/schema";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -46,9 +48,11 @@ export default async function ServiceDetailPage({
   if (!service) notFound();
 
   const Icon = service.icon;
+  const schema = serviceGraph(service.slug, "en");
 
   return (
     <>
+      {schema && <JsonLd data={schema} />}
       <Header />
       <main className="pt-32 pb-24 px-6">
         <div className="mx-auto max-w-3xl">
