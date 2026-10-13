@@ -19,7 +19,14 @@ export async function generateMetadata({
   return {
     title: `${service.en.title} in Morocco`,
     description: service.en.long.slice(0, 155),
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: {
+      canonical: `/services/${service.slug}`,
+      languages: {
+        en: `/services/${service.slug}`,
+        fr: `/fr/services/${service.slug}`,
+        "x-default": `/services/${service.slug}`,
+      },
+    },
     openGraph: {
       type: "website",
       url: `/services/${service.slug}`,

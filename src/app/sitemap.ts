@@ -6,34 +6,25 @@ import { SITE_URL, CONTENT_LAST_UPDATED } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(CONTENT_LAST_UPDATED);
 
+  const pair = (enPath: string, frPath: string): MetadataRoute.Sitemap => {
+    const en = `${SITE_URL}${enPath}`;
+    const fr = `${SITE_URL}${frPath}`;
+    const alternates = { languages: { en, fr } };
+    return [
+      { url: en, lastModified, alternates },
+      { url: fr, lastModified, alternates },
+    ];
+  };
+
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: SITE_URL,
-      lastModified,
-      alternates: { languages: { en: SITE_URL, fr: `${SITE_URL}/fr` } },
-    },
-    {
-      url: `${SITE_URL}/fr`,
-      lastModified,
-      alternates: { languages: { en: SITE_URL, fr: `${SITE_URL}/fr` } },
-    },
-    {
-      url: `${SITE_URL}/services`,
-      lastModified,
-      alternates: { languages: { en: `${SITE_URL}/services`, fr: `${SITE_URL}/fr/services` } },
-    },
-    {
-      url: `${SITE_URL}/fr/services`,
-      lastModified,
-      alternates: { languages: { en: `${SITE_URL}/services`, fr: `${SITE_URL}/fr/services` } },
-    },
+    ...pair("", "/fr"),
+    ...pair("/services", "/fr/services"),
     { url: `${SITE_URL}/portfolio`, lastModified },
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${SITE_URL}/services/${s.slug}`,
-    lastModified,
-  }));
+  const serviceRoutes: MetadataRoute.Sitemap = services.flatMap((s) =>
+    pair(`/services/${s.slug}`, `/fr/services/${s.slug}`)
+  );
 
   const portfolioRoutes: MetadataRoute.Sitemap = portfolio.map((p) => ({
     url: `${SITE_URL}/portfolio/${p.slug}`,

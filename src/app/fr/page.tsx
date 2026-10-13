@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { LanguageProvider } from "@/i18n/context";
 import { faqs } from "@/data/faq";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
@@ -14,19 +13,29 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
+const FR_TITLE = "KH Solutions | Développement Web, IA et Automatisation au Maroc";
+const FR_DESCRIPTION =
+  "KH Solutions (KHSolutions), agence logicielle à Rabat : sites web, automatisation, chatbots IA, CRM et e-commerce pour les entreprises marocaines.";
+
 export const metadata: Metadata = {
-  title: "KHSolutions — Des logiciels intelligents pour votre entreprise.",
-  description: "Agence logicielle premium : sites web, automatisation, chatbots IA, tableaux de bord, CRM et plus, pour les entreprises marocaines.",
+  title: { absolute: FR_TITLE },
+  description: FR_DESCRIPTION,
   alternates: {
     canonical: "/fr",
     languages: { en: "/", fr: "/fr", "x-default": "/" },
   },
   openGraph: {
     type: "website",
+    locale: "fr_FR",
     siteName: "KHSolutions",
-    title: "KHSolutions — Des logiciels intelligents pour votre entreprise.",
-    description: "Agence logicielle premium : sites web, automatisation, chatbots IA, tableaux de bord, CRM et plus.",
-    url: "https://www.khsolutions.it.com/fr",
+    url: "/fr",
+    title: FR_TITLE,
+    description: FR_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: FR_TITLE,
+    description: FR_DESCRIPTION,
   },
 };
 
@@ -34,6 +43,7 @@ export default function HomeFr() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: "fr",
     mainEntity: faqs.map((item) => ({
       "@type": "Question",
       name: item.fr.q,
@@ -42,8 +52,11 @@ export default function HomeFr() {
   };
 
   return (
-    <LanguageProvider initialLang="fr">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
+      />
       <Header />
       <main>
         <Hero />
@@ -58,6 +71,6 @@ export default function HomeFr() {
         <Contact />
       </main>
       <Footer />
-    </LanguageProvider>
+    </>
   );
 }
