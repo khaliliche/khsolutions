@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: "Agence logicielle premium : sites web, automatisation, chatbots IA, tableaux de bord, CRM et plus, pour les entreprises marocaines.",
   alternates: {
     canonical: "/fr",
-    languages: { en: "/", fr: "/fr" },
+    languages: { en: "/", fr: "/fr", "x-default": "/" },
   },
   openGraph: {
     type: "website",

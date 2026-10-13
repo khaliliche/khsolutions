@@ -14,7 +14,10 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", fr: "/fr", "x-default": "/" },
+  },
   openGraph: {
     type: "website",
     url: "/",

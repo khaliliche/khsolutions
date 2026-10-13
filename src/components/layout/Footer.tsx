@@ -2,19 +2,23 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/i18n/context";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/BrandIcons";
 import { MessageCircle } from "lucide-react";
 
 export default function Footer() {
   const { t, lang } = useLanguage();
+  const pathname = usePathname() ?? "";
+  const prefix = pathname === "/fr" || pathname.startsWith("/fr/") ? "/fr" : "";
+  const anchor = (id: string) => (prefix ? `${prefix}#${id}` : `/#${id}`);
 
   const links = [
-    { href: "/#home", label: t.nav.home },
-    { href: "/#services", label: t.nav.services },
-    { href: "/#portfolio", label: t.nav.portfolio },
-    { href: "/#pricing", label: t.nav.pricing },
-    { href: "/#contact", label: t.nav.contact },
+    { href: anchor("home"), label: t.nav.home },
+    { href: anchor("services"), label: t.nav.services },
+    { href: anchor("portfolio"), label: t.nav.portfolio },
+    { href: anchor("pricing"), label: t.nav.pricing },
+    { href: anchor("contact"), label: t.nav.contact },
   ];
 
   const socials = [
@@ -28,7 +32,7 @@ export default function Footer() {
     <footer className="relative border-t border-border px-6 py-14">
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <Link href="/" className="font-display font-semibold text-lg tracking-tight">
+          <Link href={prefix || "/"} className="font-display font-semibold text-lg tracking-tight">
             KH<span className="text-primary">Solutions</span>
           </Link>
           <p className="mt-2 text-sm text-muted max-w-xs">{lang === "en" ? "Smart software for everyday business." : "Des logiciels intelligents pour votre entreprise."}</p>

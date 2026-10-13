@@ -7,8 +7,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(CONTENT_LAST_UPDATED);
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: SITE_URL, lastModified },
-    { url: `${SITE_URL}/services`, lastModified },
+    {
+      url: SITE_URL,
+      lastModified,
+      alternates: { languages: { en: SITE_URL, fr: `${SITE_URL}/fr` } },
+    },
+    {
+      url: `${SITE_URL}/fr`,
+      lastModified,
+      alternates: { languages: { en: SITE_URL, fr: `${SITE_URL}/fr` } },
+    },
+    {
+      url: `${SITE_URL}/services`,
+      lastModified,
+      alternates: { languages: { en: `${SITE_URL}/services`, fr: `${SITE_URL}/fr/services` } },
+    },
+    {
+      url: `${SITE_URL}/fr/services`,
+      lastModified,
+      alternates: { languages: { en: `${SITE_URL}/services`, fr: `${SITE_URL}/fr/services` } },
+    },
     { url: `${SITE_URL}/portfolio`, lastModified },
   ];
 

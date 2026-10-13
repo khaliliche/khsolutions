@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   title: "Services: Web Development, AI & Automation in Morocco",
   description:
     "Websites, business automation, AI chatbots, CRMs, dashboards and e-commerce built for Moroccan businesses. See all KHSolutions services.",
-  alternates: { canonical: "/services" },
+  alternates: {
+    canonical: "/services",
+    languages: { en: "/services", fr: "/fr/services", "x-default": "/services" },
+  },
   openGraph: {
     type: "website",
     url: "/services",

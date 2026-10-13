@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/i18n/context";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const { t } = useLanguage();
+  const pathname = usePathname() ?? "";
+  const prefix = pathname === "/fr" || pathname.startsWith("/fr/") ? "/fr" : "";
+  const anchor = (id: string) => (prefix ? `${prefix}#${id}` : `/#${id}`);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -18,20 +22,20 @@ export default function Header() {
   }, []);
 
   const links = [
-    { href: "/#home", label: t.nav.home },
-    { href: "/#services", label: t.nav.services },
-    { href: "/#portfolio", label: t.nav.portfolio },
-    { href: "/#process", label: t.nav.process },
-    { href: "/#technologies", label: t.nav.technologies },
-    { href: "/#pricing", label: t.nav.pricing },
-    { href: "/#faq", label: t.nav.faq },
-    { href: "/#contact", label: t.nav.contact },
+    { href: anchor("home"), label: t.nav.home },
+    { href: anchor("services"), label: t.nav.services },
+    { href: anchor("portfolio"), label: t.nav.portfolio },
+    { href: anchor("process"), label: t.nav.process },
+    { href: anchor("technologies"), label: t.nav.technologies },
+    { href: anchor("pricing"), label: t.nav.pricing },
+    { href: anchor("faq"), label: t.nav.faq },
+    { href: anchor("contact"), label: t.nav.contact },
   ];
 
   return (
     <header className={"fixed top-0 inset-x-0 z-50 transition-all duration-300 " + (scrolled ? "glass shadow-[0_1px_0_0_var(--border)]" : "bg-transparent")}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display font-semibold text-lg tracking-tight">
+        <Link href={prefix || "/"} className="font-display font-semibold text-lg tracking-tight">
           KH<span className="text-primary">Solutions</span>
         </Link>
 

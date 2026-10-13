@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Services | KHSolutions - Développement Web, IA & Automatisation au Maroc",
   description:
     "Sites web, automatisation, chatbots IA, CRM, tableaux de bord et e-commerce pour les entreprises marocaines. Découvrez tous nos services.",
-  alternates: { canonical: "/fr/services", languages: { en: "/services", fr: "/fr/services" } },
+  alternates: { canonical: "/fr/services", languages: { en: "/services", fr: "/fr/services", "x-default": "/services" } },
 };
 
 export default function ServicesPageFr() {
