@@ -22,9 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/portfolio`, lastModified },
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = services.flatMap((s) =>
-    pair(`/services/${s.slug}`, `/fr/services/${s.slug}`)
-  );
+  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
+    url: `${SITE_URL}/services/${s.slug}`,
+    lastModified,
+  }));
 
   const portfolioRoutes: MetadataRoute.Sitemap = portfolio.map((p) => ({
     url: `${SITE_URL}/portfolio/${p.slug}`,
