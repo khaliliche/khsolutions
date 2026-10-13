@@ -1,21 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LanguageProvider } from "@/i18n/context";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
 import { ArrowRight } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+import { servicesIndexGraph } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Services | KHSolutions - Développement Web, IA & Automatisation au Maroc",
+  title: "Services : développement web, IA et automatisation au Maroc",
   description:
-    "Sites web, automatisation, chatbots IA, CRM, tableaux de bord et e-commerce pour les entreprises marocaines. Découvrez tous nos services.",
-  alternates: { canonical: "/fr/services", languages: { en: "/services", fr: "/fr/services" } },
+    "Sites web, automatisation, chatbots IA, CRM, tableaux de bord et e-commerce pour les entreprises marocaines. Découvrez tous les services de KH Solutions.",
+  alternates: {
+    canonical: "/fr/services",
+    languages: { en: "/services", fr: "/fr/services", "x-default": "/services" },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "/fr/services",
+    title: "Services : développement web, IA et automatisation au Maroc | KH Solutions",
+    description:
+      "Sites web, automatisation, chatbots IA, CRM, tableaux de bord et e-commerce pour les entreprises marocaines.",
+  },
 };
 
 export default function ServicesPageFr() {
   return (
-    <LanguageProvider initialLang="fr">
+    <>
+      <JsonLd data={servicesIndexGraph("fr")} />
       <Header />
       <main className="pt-32 pb-24 px-6">
         <div className="mx-auto max-w-6xl">
@@ -56,6 +69,6 @@ export default function ServicesPageFr() {
         </div>
       </main>
       <Footer />
-    </LanguageProvider>
+    </>
   );
 }

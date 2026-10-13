@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
+import JsonLd from "@/components/seo/JsonLd";
+import { serviceGraph } from "@/lib/schema";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -19,7 +21,14 @@ export async function generateMetadata({
   return {
     title: `${service.en.title} in Morocco`,
     description: service.en.long.slice(0, 155),
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: {
+      canonical: `/services/${service.slug}`,
+      languages: {
+        en: `/services/${service.slug}`,
+        fr: `/fr/services/${service.slug}`,
+        "x-default": `/services/${service.slug}`,
+      },
+    },
     openGraph: {
       type: "website",
       url: `/services/${service.slug}`,
@@ -39,9 +48,11 @@ export default async function ServiceDetailPage({
   if (!service) notFound();
 
   const Icon = service.icon;
+  const schema = serviceGraph(service.slug, "en");
 
   return (
     <>
+      {schema && <JsonLd data={schema} />}
       <Header />
       <main className="pt-32 pb-24 px-6">
         <div className="mx-auto max-w-3xl">

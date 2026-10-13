@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useLanguage } from "@/i18n/context";
 
+
 const testimonials = [
   {
     en: { quote: "It's been a wonderful week working with you.", name: "Tarik", role: "AC Store" },

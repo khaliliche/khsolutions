@@ -4,6 +4,8 @@ import "./globals.css";
 import { LanguageProvider } from "@/i18n/context";
 import Loader from "@/components/ui/Loader";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import JsonLd from "@/components/seo/JsonLd";
+import { siteGraph } from "@/lib/schema";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, SITE_NAME, SITE_ALT_NAME, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
@@ -41,41 +43,6 @@ export const viewport: Viewport = {
   themeColor: "#08090B",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      alternateName: [SITE_ALT_NAME],
-      description: SITE_DESCRIPTION,
-      url: SITE_URL,
-      telephone: "+212713805656",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Rabat",
-        addressCountry: "MA",
-      },
-      areaServed: { "@type": "Country", name: "Morocco" },
-      sameAs: [
-        "https://github.com/khaliliche",
-        "https://www.linkedin.com/in/khalil-iche-32688a358/",
-        "https://www.instagram.com/k4alil5/",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      url: `${SITE_URL}/`,
-      name: SITE_NAME,
-      alternateName: [SITE_ALT_NAME],
-      inLanguage: ["en", "fr"],
-      publisher: { "@id": `${SITE_URL}/#organization` },
-    },
-  ],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistMono.variable} ${inter.variable} h-full antialiased`}>
@@ -85,12 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ScrollProgress />
           {children}
         </LanguageProvider>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={siteGraph()} />
         <Analytics />
         <SpeedInsights />
       </body>

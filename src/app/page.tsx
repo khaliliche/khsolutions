@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
+import JsonLd from "@/components/seo/JsonLd";
+import { homeGraph } from "@/lib/schema";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import WhyUs from "@/components/sections/WhyUs";
@@ -14,7 +16,10 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", fr: "/fr", "x-default": "/" },
+  },
   openGraph: {
     type: "website",
     url: "/",
@@ -31,6 +36,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeGraph("en")} />
       <Header />
       <main>
         <Hero />

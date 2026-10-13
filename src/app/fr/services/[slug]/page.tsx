@@ -1,61 +1,86 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
-import { LanguageProvider } from "@/i18n/context";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
-import { ArrowRight } from "lucide-react";
+import { truncate } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { serviceGraph } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  title: "Services | KHSolutions - Développement Web, IA & Automatisation au Maroc",
-  description:
-    "Sites web, automatisation, chatbots IA, CRM, tableaux de bord et e-commerce pour les entreprises marocaines. Découvrez tous nos services.",
-  alternates: { canonical: "/fr/services", languages: { en: "/services", fr: "/fr/services" } },
-};
+export function generateStaticParams() {
+  return services.map((s) => ({ slug: s.slug }));
+}
 
-export default function ServicesPageFr() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
+  if (!service) return {};
+  const description = truncate(service.fr.long, 155);
+  return {
+    title: `${service.fr.title} au Maroc`,
+    description,
+    alternates: {
+      canonical: `/fr/services/${service.slug}`,
+      languages: {
+        en: `/services/${service.slug}`,
+        fr: `/fr/services/${service.slug}`,
+        "x-default": `/services/${service.slug}`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "fr_FR",
+      url: `/fr/services/${service.slug}`,
+      title: `${service.fr.title} au Maroc | KH Solutions`,
+      description,
+    },
+  };
+}
+
+export default async function ServiceDetailPageFr({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
+  if (!service) notFound();
+
+  const Icon = service.icon;
+  const schema = serviceGraph(service.slug, "fr");
+
   return (
-    <LanguageProvider initialLang="fr">
+    <>
+      {schema && <JsonLd data={schema} />}
       <Header />
       <main className="pt-32 pb-24 px-6">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-primary-light">
-              Ce Que Nous Créons
-            </span>
-            <h1 className="mt-4 font-display text-3xl sm:text-4xl font-semibold tracking-tight">
-              Des services pensés pour votre croissance
-            </h1>
-            <p className="mt-4 text-muted max-w-2xl mx-auto leading-relaxed">
-              Des sites web aux chatbots IA en passant par l&apos;automatisation complète, chaque service est
-              pensé pour les entreprises marocaines.
-            </p>
+        <div className="mx-auto max-w-3xl">
+          <Link href="/fr/services" className="text-sm text-primary-light hover:underline">
+            ← Tous les services
+          </Link>
+          <div className="mt-6 inline-flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-primary mb-6">
+            <Icon size={26} className="text-white" strokeWidth={2} />
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <Link
-                  key={service.slug}
-                  href={`/fr/services/${service.slug}`}
-                  className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-border-hover hover:bg-surface-hover transition-colors"
-                >
-                  <div className="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-gradient-primary mb-5">
-                    <Icon size={20} className="text-white" strokeWidth={2} />
-                  </div>
-                  <h2 className="font-display text-base font-medium mb-2">{service.fr.title}</h2>
-                  <p className="text-sm text-muted leading-relaxed mb-4">{service.fr.desc}</p>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-primary-light">
-                    En savoir plus <ArrowRight size={14} />
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-6">
+            {service.fr.title}
+          </h1>
+          <p className="text-muted leading-relaxed text-lg mb-10">{service.fr.long}</p>
+          <a
+            href="https://wa.me/212713805656?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20ce%20service"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-primary px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+          >
+            Demander une consultation gratuite
+          </a>
         </div>
       </main>
       <Footer />
-    </LanguageProvider>
+    </>
   );
 }

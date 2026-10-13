@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { LanguageProvider } from "@/i18n/context";
-import { faqs } from "@/data/faq";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import WhyUs from "@/components/sections/WhyUs";
@@ -13,37 +11,36 @@ import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import JsonLd from "@/components/seo/JsonLd";
+import { homeGraph } from "@/lib/schema";
+import { SITE_NAME, SITE_TITLE_FR, SITE_DESCRIPTION_FR } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "KHSolutions — Des logiciels intelligents pour votre entreprise.",
-  description: "Agence logicielle premium : sites web, automatisation, chatbots IA, tableaux de bord, CRM et plus, pour les entreprises marocaines.",
+  title: { absolute: SITE_TITLE_FR },
+  description: SITE_DESCRIPTION_FR,
   alternates: {
     canonical: "/fr",
-    languages: { en: "/", fr: "/fr" },
+    languages: { en: "/", fr: "/fr", "x-default": "/" },
   },
   openGraph: {
     type: "website",
-    siteName: "KHSolutions",
-    title: "KHSolutions — Des logiciels intelligents pour votre entreprise.",
-    description: "Agence logicielle premium : sites web, automatisation, chatbots IA, tableaux de bord, CRM et plus.",
-    url: "https://www.khsolutions.it.com/fr",
+    locale: "fr_FR",
+    siteName: SITE_NAME,
+    url: "/fr",
+    title: SITE_TITLE_FR,
+    description: SITE_DESCRIPTION_FR,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE_FR,
+    description: SITE_DESCRIPTION_FR,
   },
 };
 
 export default function HomeFr() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
-      "@type": "Question",
-      name: item.fr.q,
-      acceptedAnswer: { "@type": "Answer", text: item.fr.a },
-    })),
-  };
-
   return (
-    <LanguageProvider initialLang="fr">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <>
+      <JsonLd data={homeGraph("fr")} />
       <Header />
       <main>
         <Hero />
@@ -58,6 +55,6 @@ export default function HomeFr() {
         <Contact />
       </main>
       <Footer />
-    </LanguageProvider>
+    </>
   );
 }

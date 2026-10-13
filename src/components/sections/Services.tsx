@@ -46,7 +46,7 @@ export default function Services() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link href="/services" className="text-sm text-primary-light hover:underline font-mono">
+          <Link href={lang === "fr" ? "/fr/services" : "/services"} className="text-sm text-primary-light hover:underline font-mono">
             {lang === "en" ? "View all services ->" : "Voir tous les services ->"}
           </Link>
         </div>

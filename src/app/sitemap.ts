@@ -6,9 +6,19 @@ import { SITE_URL, CONTENT_LAST_UPDATED } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(CONTENT_LAST_UPDATED);
 
+  const pair = (enPath: string, frPath: string): MetadataRoute.Sitemap => {
+    const en = `${SITE_URL}${enPath}`;
+    const fr = `${SITE_URL}${frPath}`;
+    const alternates = { languages: { en, fr } };
+    return [
+      { url: en, lastModified, alternates },
+      { url: fr, lastModified, alternates },
+    ];
+  };
+
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: SITE_URL, lastModified },
-    { url: `${SITE_URL}/services`, lastModified },
+    ...pair("", "/fr"),
+    ...pair("/services", "/fr/services"),
     { url: `${SITE_URL}/portfolio`, lastModified },
   ];
 

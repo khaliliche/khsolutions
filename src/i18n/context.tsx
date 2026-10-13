@@ -1,18 +1,11 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} 
-from "react";
+import { createContext, useContext, useEffect, ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { en } from "./en";
 import { fr } from "./fr";
 import { Dict } from "./types";
-
-type Lang = "en" | "fr";
+import { Lang, langFromPath, alternatePath } from "./routes";
 
 const dictionaries: Record<Lang, Dict> = { en, fr };
 
@@ -22,22 +15,27 @@ interface LanguageContextType {
   t: Dict;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
-);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children, initialLang }: { children: ReactNode; initialLang?: Lang }) {
-  const [lang, setLangState] = useState<Lang>(initialLang ?? "en");
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang?: Lang;
+}) {
+  const pathname = usePathname() ?? "/";
+  const router = useRouter();
+  const lang: Lang = initialLang ?? langFromPath(pathname);
 
+  // Keep <html lang> in sync after load (the server-rendered root layout is static "en").
   useEffect(() => {
-    if (initialLang) return;
-    const saved = localStorage.getItem("khs-lang") as Lang | null;
-    if (saved === "en" || saved === "fr") setLangState(saved);
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
-  const setLang = (newLang: Lang) => {
-    setLangState(newLang);
-    localStorage.setItem("khs-lang", newLang);
+  const setLang = (next: Lang) => {
+    if (next === lang) return;
+    router.push(alternatePath(pathname, next) ?? (next === "fr" ? "/fr" : "/"));
   };
 
   return (

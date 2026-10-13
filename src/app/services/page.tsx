@@ -4,12 +4,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { services } from "@/data/services";
 import { ArrowRight } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+import { servicesIndexGraph } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Services: Web Development, AI & Automation in Morocco",
   description:
     "Websites, business automation, AI chatbots, CRMs, dashboards and e-commerce built for Moroccan businesses. See all KHSolutions services.",
-  alternates: { canonical: "/services" },
+  alternates: {
+    canonical: "/services",
+    languages: { en: "/services", fr: "/fr/services", "x-default": "/services" },
+  },
   openGraph: {
     type: "website",
     url: "/services",
@@ -22,6 +27,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={servicesIndexGraph("en")} />
       <Header />
       <main className="pt-32 pb-24 px-6">
         <div className="mx-auto max-w-6xl">
