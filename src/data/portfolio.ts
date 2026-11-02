@@ -95,7 +95,7 @@
       results: "Un seul espace admin pour gérer la flotte, les réservations en ligne et les contrats au guichet.",
     },
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "ahmedredcars.com",
+    liveUrl: "https://www.ahmedredcars.com/",
     githubUrl: "https://github.com/khaliliche/ahmedredcar",
   },
     {

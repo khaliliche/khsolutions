@@ -66,6 +66,7 @@ export default function Footer() {
             <p className="tech-label">{lang === "en" ? "Contact" : "Contact"}</p>
             <ul className="mt-5 space-y-4 text-sm text-muted">
               <li className="flex items-center gap-3"><Phone size={14} className="text-primary-light" aria-hidden="true" /> +212 713 805 656</li>
+              <li className="flex items-center gap-3"><Phone size={14} className="text-primary-light" aria-hidden="true" /> +212 617 246 915</li>
               <li className="flex items-center gap-3"><MapPin size={14} className="text-primary-light" aria-hidden="true" /> Rabat, Morocco</li>
             </ul>
             <a href="https://wa.me/212713805656" target="_blank" rel="noopener noreferrer"
